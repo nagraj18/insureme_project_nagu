@@ -1,13 +1,13 @@
 - name : Configure Docker on EC2 Instances
   hosts : all
-  become: false
+  become: true
   connection : ssh
-  tasks :
-  - name: updating yum
-    command : sudo yum update -y
+  tasks : 
+  - name: updating apt
+    command : sudo apt-get update
 
   - name : Install Docker
-    command : sudo yum  install -y docker
+    command : sudo apt-get install -y docker.io
     become : yes
     become_user : root
 
@@ -17,4 +17,4 @@
     become_user : root
 
   - name: Deploy Docker Container
-    command: sudo docker run -itd -p 9901:8081 nagaraju18/insure_me_nagu:46.0
+    command: docker run -itd -p 8084:8081 shubhamkushwah123/insure-me:3.0
